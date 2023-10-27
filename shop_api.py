@@ -1,16 +1,16 @@
 from fastapi import FastAPI, HTTPException, Depends, Request
 import os 
-
-import constants
+from dotenv import load_dotenv
+# import constants
 import os
-os.environ["OPENAI_API_KEY"] = constants.APIKEY
+# os.environ["OPENAI_API_KEY"] = constants.APIKEY
 from langchain.vectorstores import FAISS, Chroma
 from langchain.embeddings import OpenAIEmbeddings
 __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import chromadb
-
+load_dotenv()
 
 def load_vectorstore():
     embeddings = OpenAIEmbeddings()
